@@ -1,55 +1,53 @@
 <?php
 
-    $conn = mysqli_connect('localhost','root','','wpsmt5');
+$conn = mysqli_connect('localhost', 'root', '', 'wpsmt5');
 
-    //pemanggilan tabel
+//pemanggilan tabel
 
-    function query($query)
-    {
-        global $conn;
+function query($query)
+{
+    global $conn;
 
-        //mengambil seluruh data pada tabel
-        $result = mysqli_query($conn,$query);
-        if(mysqli_num_rows($result) ==1 ){
-            return mysqli_fetch_assoc($result);
-        }
-
-        //pemanggilan elemen data dengan rapih
-        $rows = [];
-        while ($row = mysqli_fetch_assoc($result)){
-            $rows[]=$row;
-        }
-        return $rows;
+    //mengambil seluruh data pada tabel
+    $result = mysqli_query($conn, $query);
+    if (mysqli_num_rows($result) == 1) {
+        return mysqli_fetch_assoc($result);
     }
 
-    function tambah($data)
-    {
-          global $conn;
-              
-              $nama     = htmlspecialchars ($data['nama']);
-              $alamat   = htmlspecialchars($data['alamat']);
-              $jenis_kelamin    = htmlspecialchars($data['jenis_kelamin']);
-              $agama    = htmlspecialchars($data['agama']);
-              $sekolah_asal  = htmlspecialchars($data['sekolah_asal']);
-              $foto_maba     = htmlspecialchars($data['foto_maba']);
+    //pemanggilan elemen data dengan rapih
+    $rows = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
+    }
+    return $rows;
+}
 
-        $query = "INSERT INTO calon_mhs 
+function tambah($data)
+{
+    global $conn;
+
+    $nama     = htmlspecialchars($data['nama']);
+    $alamat   = htmlspecialchars($data['alamat']);
+    $jenis_kelamin    = htmlspecialchars($data['jenis_kelamin']);
+    $agama    = htmlspecialchars($data['agama']);
+    $sekolah_asal  = htmlspecialchars($data['sekolah_asal']);
+    $foto_maba     = htmlspecialchars($data['foto_maba']);
+
+    $query = "INSERT INTO calon_mhs 
                  VALUES
               (null,'$nama','$alamat','$jenis_kelamin','$agama','$sekolah_asal','$foto_maba');";
 
-                mysqli_query($conn,$query);
-                echo mysqli_error($conn);
-                return mysqli_affected_rows($conn);
-
-          
-    }
-   
+    mysqli_query($conn, $query);
+    echo mysqli_error($conn);
+    return mysqli_affected_rows($conn);
+}
 
 
 
-    function hapus($id)
-    {
-        global $conn;
+
+function hapus($id)
+{
+    global $conn;
     mysqli_query($conn, "DELETE FROM calon_mhs WHERE id= $id") or die(mysqli_error($conn));
     return mysqli_affected_rows($conn);
-    }
+}

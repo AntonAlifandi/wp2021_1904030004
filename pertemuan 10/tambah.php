@@ -120,11 +120,11 @@ if (isset($_POST['submit'])) {
                 </div>
                 <div class="form-group">
                     <label for="sekolah">Sekolah Asal</label>
-                    <input type="text" class="form-control" id="sekolah" name="sekolah" required autocomplete="off">
+                    <input type="text" class="form-control" id="sekolah_asal" name="sekolah_asal" required autocomplete="off">
                 </div>
                 <div class="form-group">
                     <label for="foto">Foto</label>
-                    <input type="text" class="form-control" id="foto" name="foto" required>
+                    <input type="text" class="form-control" id="foto_maba" name="foto_maba" required>
                 </div>
 
                 <button type="submit" class="btn btn-primary" name="submit">Input Data</button>
